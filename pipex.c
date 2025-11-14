@@ -6,48 +6,45 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:08:45 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/12 17:38:53 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/14 13:32:26 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	main(void)
+int	main(int argc, char **argv, char **envp)
 {
-	int fd[2];
-	pid_t id;
 
-	if (pipe(fd) == -1)
-	{
-		ft_printf("Erreur lors de la création du pipe\n");
-		return (1);
-	}
+	// int id;
 
-	id = fork();
-	if (id == -1)
-	{
-		ft_printf("Erreur lors du fork\n");
-		return (1);
-	}
+	if (argc != 2)
+		return (0);
+	// id = fork();
+	// if (id != 0)
+	// {
+	// 	ft_printf("Je suis le proc parent\n");
+	// }
+	// else if (id == 0)
+	// {
+	// 	ft_printf("je suis l'enfant\n");
+	// }
+	// int i = 0;
+	// // if (id != 0)
+	// // 	wait(NULL);
+	// if (id == 0)
+	// {
+	// 	for (i = 0; i < 10; i++)
+	// 		ft_printf("enfant :%d\n", i);
+	// }
+	// else
+	// {
+	// 	for (i = 0; i < 10; i++)
+	// 		ft_printf("parent :%d\n", i);
 
-	if (id == 0)
-	{
-		// Processus enfant
-		close(fd[0]); // on ferme le côté lecture (inutile ici)
-		int i = 42;
-		write(fd[1], &i, sizeof(i)); // on écrit dans le pipe
-		ft_printf("Enfant: j'ai envoyé %d au parent\n", i);
-		close(fd[1]);
-	}
-	else
-	{
-		// Processus parent
-		close(fd[1]); // on ferme le côté écriture (inutile ici)
-		int received;
-		read(fd[0], &received, sizeof(received)); // on lit depuis le pipe
-		ft_printf("Parent: j'ai reçu %d de l'enfant\n", received);
-		close(fd[0]);
-		wait(NULL); // on attend la fin du fils
-	}
+	// }
+	char *path;
+	path = ft_strjoin("/bin/", argv[1]);
+	execve("/bin/", &argv[1], envp);
+
 	return (0);
 }

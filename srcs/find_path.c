@@ -1,28 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   find_path.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/12 16:08:57 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/14 11:04:53 by dufama           ###   ########.fr       */
+/*   Created: 2025/11/14 11:05:20 by dufama            #+#    #+#             */
+/*   Updated: 2025/11/14 11:09:38 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "../pipex.h"
 
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include "./libft/libft.h"
-# include "sys/wait.h"
 
-typedef struct s_data {
-	int	fd_pipe[2];
-	char **argv;
-	int	argc;
-} t_data;
 
-#endif
