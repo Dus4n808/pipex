@@ -6,13 +6,13 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 16:47:41 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/17 18:16:56 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/17 18:34:50 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	child_process(int input_fd, int output_fd, char *cmd, char **envp)
+void	child_procces(int input_fd, int output_fd, char *cmd, char **envp)
 {
 	if (dup2(input_fd, STDIN_FILENO) == -1)
 	{
@@ -59,7 +59,7 @@ void	run_child(t_data *pipex, int pipe_fd[2], char **envp, int i)
 		pipex->output = pipex->outfile_fd;
 	else
 		pipex->output = pipe_fd[1];
-	child_process(pipex->input, pipex->output, pipex->argv[2 + i], envp);
+	child_procces(pipex->input, pipex->output, pipex->argv[2 + i], envp);
 }
 
 void	clean_parent(t_data *pipex, int pipe_fd[2], int i)
