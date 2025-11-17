@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:08:57 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/14 11:04:53 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/17 18:17:21 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,30 @@
 # include <stdlib.h>
 # include "./libft/libft.h"
 # include "sys/wait.h"
+# include <errno.h>
+# include <string.h>
+# include <fcntl.h>
 
 typedef struct s_data {
-	int	fd_pipe[2];
 	char **argv;
-	int	argc;
+	int	nb_cmd;
+	int	infile_fd;
+	int	outfile_fd;
+	int	prev_fd;
+	int	input;
+	int	output;
+	int	here_doc;
 } t_data;
+
+char	*find_path(char **envp);
+char	*find_cmd(char *cmd, char **envp);
+void	execute_cmd(char *cmd, char **envp);
+int		open_infile(char *file);
+int		open_outfile(char *file);
+void	child_process(int input_fd, int output_fd, char *cmd, char **envp);
+void	run_child(t_data *pipex, int pipe_fd[2], char **envp, int i);
+void	init_struct(t_data *pipex, int argc, char **argv);
+void	clean_parent(t_data *pipex, int pipe_fd[2], int i);
+int		check_input(int argc);
 
 #endif

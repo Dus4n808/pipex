@@ -6,7 +6,7 @@
 #    By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/07 12:20:06 by dufama            #+#    #+#              #
-#    Updated: 2025/10/29 15:53:52 by dufama           ###   ########.fr        #
+#    Updated: 2025/11/09 15:14:06 by dufama           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,13 +23,14 @@ BONUS = ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c ft_lstlast_
         ft_lstmap_bonus.c
 
 PRINTF_SRCS = ft_printf/ft_printf.c ft_printf/srcs/printf_utils.c ft_printf/srcs/printf_utils2.c
+GNL_SRC = get_next_line/get_next_line_utils.c get_next_line/get_next_line.c
 
-SRCS = $(LIBC) $(ADDITIONAL) $(BONUS) $(PRINTF_SRCS)
+SRCS = $(LIBC) $(ADDITIONAL) $(BONUS) $(PRINTF_SRCS) $(GNL_SRC)
 OBJS = $(SRCS:.c=.o)
 
 NAME = libft.a
 
-CC = gcc
+CC = cc
 AR = ar
 ARFLAGS = rcs
 RM = rm -f

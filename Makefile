@@ -6,11 +6,14 @@
 #    By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/12 15:53:34 by dufama            #+#    #+#              #
-#    Updated: 2025/11/14 14:56:29 by dufama           ###   ########.fr        #
+#    Updated: 2025/11/17 17:04:52 by dufama           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = pipex.c
+SRCS = pipex.c \
+		srcs/find_path.c \
+		srcs/open_file.c \
+		srcs/procces.c \
 
 OBJS = $(SRCS:.c=.o)
 
