@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 11:05:20 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/18 18:43:44 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/18 18:48:51 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*find_cmd(char *cmd, char **envp)
 	if (!path_env)
 		return (NULL);
 	path_split = ft_split(path_env, ':');
-	if (!path_env)
+	if (!path_split)
 		free_tab(path_split);
 	i = 0;
 	while (path_split[i])
