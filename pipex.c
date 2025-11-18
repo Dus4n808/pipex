@@ -6,12 +6,11 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:08:45 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/17 18:17:09 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/18 12:46:49 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
 
 int	main(int argc, char **argv, char **envp)
 {

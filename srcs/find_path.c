@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 11:05:20 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/17 15:36:15 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/18 13:27:10 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,10 @@ void	execute_cmd(char *cmd, char **envp)
 
 	args = ft_split(cmd, ' ');
 	if (!args || !args[0])
+	{
+		ft_putstr_fd("erreur de split\n", 2);
 		exit(1);
+	}
 	path = find_cmd(args[0], envp);
 	if (!path)
 	{
