@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 16:41:08 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/17 18:16:26 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/18 18:35:27 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,17 @@ int	open_outfile(char *file)
 		exit(1);
 	}
 	return (fd_outfile);
+}
+
+void	free_tab(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
 }

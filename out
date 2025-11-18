@@ -1,0 +1,9 @@
+in
+libft
+Makefile
+out
+pipex
+pipex.c
+pipex.h
+pipex.o
+srcs

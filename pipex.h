@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:08:57 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/17 18:38:22 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/18 18:38:44 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,8 @@ void	run_child(t_data *pipex, int pipe_fd[2], char **envp, int i);
 void	init_struct(t_data *pipex, int argc, char **argv);
 void	clean_parent(t_data *pipex, int pipe_fd[2], int i);
 int		check_input(int argc);
+void	check_if_is_absolue(char **args, char **envp);
+void	free_tab(char **tab);
+void	check_empty_cmd(char **args);
 
 #endif
