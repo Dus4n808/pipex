@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 16:47:41 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/18 18:24:41 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/20 16:14:30 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,20 @@ int	check_input(int argc)
 
 void	init_struct(t_data *pipex, int argc, char **argv)
 {
+	if (ft_strncmp("here_doc", argv[1], 8) == 0)
+	{
+		pipex->nb_cmd = argc - 4;
+		pipex->infile_fd = read_from_here_doc(argv[2]);
+		pipex->outfile_fd = open_outfile(argv[argc - 1]);
+		pipex->argv = argv;
+	}
+	else
+	{
 		pipex->nb_cmd = argc - 3;
 		pipex->infile_fd = open_infile(argv[1]);
 		pipex->outfile_fd = open_outfile(argv[argc - 1]);
 		pipex->argv = argv;
+	}
 }
 
 void	run_child(t_data *pipex, int pipe_fd[2], char **envp, int i)
@@ -59,7 +69,10 @@ void	run_child(t_data *pipex, int pipe_fd[2], char **envp, int i)
 		pipex->output = pipex->outfile_fd;
 	else
 		pipex->output = pipe_fd[1];
-	child_process(pipex->input, pipex->output, pipex->argv[2 + i], envp);
+	if (ft_strncmp("here_doc", pipex->argv[1], 8) == 0)
+		child_process(pipex->input, pipex->output, pipex->argv[3 + i], envp);
+	else
+		child_process(pipex->input, pipex->output, pipex->argv[2 + i], envp);
 }
 
 void	clean_parent(t_data *pipex, int pipe_fd[2], int i)
