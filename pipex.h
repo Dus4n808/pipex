@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:08:57 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/20 16:08:22 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/21 12:41:07 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@
 # include <string.h>
 # include <fcntl.h>
 
-typedef struct s_data {
-	char **argv;
-	int	nb_cmd;
-	int	infile_fd;
-	int	outfile_fd;
-	int	prev_fd;
-	int	input;
-	int	output;
-	int	here_doc;
-} t_data;
+typedef struct s_data
+{
+	char	**argv;
+	int		nb_cmd;
+	int		infile_fd;
+	int		outfile_fd;
+	int		prev_fd;
+	int		input;
+	int		output;
+}	t_data;
 
 char	*find_path(char **envp);
 char	*find_cmd(char *cmd, char **envp);

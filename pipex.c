@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:08:45 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/20 19:31:06 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/21 12:42:30 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ int	read_from_here_doc(char *limiter)
 
 int	main(int argc, char **argv, char **envp)
 {
-	int	pipe_fd[2];
-	int	i;
+	int		pipe_fd[2];
+	int		i;
 	pid_t	pid;
-	t_data pipex;
+	t_data	pipex;
 
 	if (check_input(argc))
 		exit (1);
@@ -82,7 +82,8 @@ int	main(int argc, char **argv, char **envp)
 		clean_parent(&pipex, pipe_fd, i);
 		i++;
 	}
-	while (waitpid(-1 , NULL, 0) > 0)
+	while (waitpid(-1, NULL, 0) > 0)
 		;
+	close(pipex.outfile_fd);
 	return (0);
 }

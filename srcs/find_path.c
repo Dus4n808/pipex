@@ -6,13 +6,13 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 11:05:20 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/18 18:48:51 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/21 12:42:47 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-char *find_path(char **envp)
+char	*find_path(char **envp)
 {
 	int	i;
 
