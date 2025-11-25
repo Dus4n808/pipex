@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:08:57 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/21 12:41:07 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/25 16:38:36 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include "./libft/libft.h"
-# include "sys/wait.h"
+# include <sys/wait.h>
 # include <errno.h>
 # include <string.h>
 # include <fcntl.h>
+#include <sys/types.h>
 
 typedef struct s_data
 {

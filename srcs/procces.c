@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 16:47:41 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/23 13:37:11 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/25 17:12:23 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ void	child_process(int input_fd, int output_fd, char *cmd, char **envp)
 	if (close(output_fd) == -1)
 		ft_putstr_fd(strerror(errno), 2);
 	execute_cmd(cmd, envp);
-	ft_putstr_fd("execve error: ", 2);
-	ft_putstr_fd(strerror(errno), 2);
 	exit(1);
 }
 

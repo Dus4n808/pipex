@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 16:41:08 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/18 18:35:27 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/25 16:07:36 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	open_infile(char *file)
 	{
 		ft_putstr_fd("pipex: ", 2);
 		ft_putstr_fd(strerror(errno), 2);
+		close(fd_file);
 		exit(1);
 	}
 	return (fd_file);
@@ -35,6 +36,7 @@ int	open_outfile(char *file)
 	{
 		ft_putstr_fd("pipex: ", 2);
 		ft_putstr_fd(strerror(errno), 2);
+		close(fd_outfile);
 		exit(1);
 	}
 	return (fd_outfile);
