@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:08:57 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/25 16:38:36 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/25 23:58:49 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,6 @@ void	check_if_is_absolue(char **args, char **envp);
 void	free_tab(char **tab);
 void	check_empty_cmd(char **args);
 int		read_from_here_doc(char *limiter);
+void	close_all_fds_except_std(int fd1, int fd2, int fd3);
 
 #endif

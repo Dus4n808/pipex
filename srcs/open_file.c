@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 16:41:08 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/25 21:44:44 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/26 00:00:02 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,19 @@ void	free_tab(char **tab)
 		i++;
 	}
 	free(tab);
+}
+
+void	close_all_fds_except_std(int fd1, int fd2, int fd3)
+{
+	int	max_fd;
+	int	fd;
+
+	max_fd = 1024;
+	fd = 3;
+	while (fd < max_fd)
+	{
+		if (fd != fd1 && fd != fd2 && fd != fd3)
+			close(fd);
+		fd++;
+	}
 }
