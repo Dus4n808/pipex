@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:08:45 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/25 17:19:24 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/25 21:58:08 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,22 @@ int	read_from_here_doc(char *limiter)
 	close(pipe_fd[1]);
 	return (pipe_fd[0]);
 }
+//WIFEXITED renvoi vrai si le child est terminé
+//WEXITSTATUS si est dif de 0 = echec
+void	wait_child(t_data *pipex)
+{
+	int	status;
+
+	while (waitpid(-1, &status, 0) > 0)
+	{
+		if (WIFEXITED(status) && WEXITSTATUS(status) != 0)
+		{
+			close(pipex->outfile_fd);
+			exit(1);
+		}
+	}
+
+}
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -82,8 +98,7 @@ int	main(int argc, char **argv, char **envp)
 		clean_parent(&pipex, pipe_fd, i);
 		i++;
 	}
-	while (waitpid(-1, NULL, 0) > 0)
-		;
+	wait_child(&pipex);
 	close(pipex.outfile_fd);
 	return (0);
 }

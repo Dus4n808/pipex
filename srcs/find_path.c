@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 11:05:20 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/25 16:03:07 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/25 21:40:01 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,8 @@ void	execute_cmd(char *cmd, char **envp)
 	{
 		ft_putstr_fd("execve error: ", 2);
 		ft_putstr_fd(strerror(errno), 2);
+		free_tab(args);
+		free(path);
 	}
 	exit (1);
 }

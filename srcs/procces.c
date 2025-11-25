@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 16:47:41 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/25 17:12:23 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/25 21:49:07 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,9 @@ void	clean_parent(t_data *pipex, int pipe_fd[2], int i)
 	{
 		close(pipe_fd[1]);
 		pipex->prev_fd = pipe_fd[0];
+	}
+	else
+	{
+		close(pipe_fd[0]);
 	}
 }
