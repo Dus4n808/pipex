@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:08:57 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/25 23:58:49 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/27 16:24:20 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <errno.h>
 # include <string.h>
 # include <fcntl.h>
-#include <sys/types.h>
+# include <sys/types.h>
 
 typedef struct s_data
 {

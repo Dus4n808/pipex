@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:08:45 by dufama            #+#    #+#             */
-/*   Updated: 2025/11/25 21:58:08 by dufama           ###   ########.fr       */
+/*   Updated: 2025/11/27 16:23:56 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	read_from_here_doc(char *limiter)
 }
 //WIFEXITED renvoi vrai si le child est terminé
 //WEXITSTATUS si est dif de 0 = echec
+
 void	wait_child(t_data *pipex)
 {
 	int	status;
@@ -73,7 +74,6 @@ void	wait_child(t_data *pipex)
 			exit(1);
 		}
 	}
-
 }
 
 int	main(int argc, char **argv, char **envp)
