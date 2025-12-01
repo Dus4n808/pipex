@@ -6,7 +6,7 @@
 #    By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/12 15:53:34 by dufama            #+#    #+#              #
-#    Updated: 2025/12/01 12:11:11 by dufama           ###   ########.fr        #
+#    Updated: 2025/12/01 14:15:07 by dufama           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ NAME = pipex
 
 BONUS = pipex_bonus
 
-CC = cc
+CC = cc -g
 CFLAGS = -Wall -Werror -Wextra -I ./
 RM = rm -f
 

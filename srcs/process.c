@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 11:57:02 by dufama            #+#    #+#             */
-/*   Updated: 2025/12/01 11:59:21 by dufama           ###   ########.fr       */
+/*   Updated: 2025/12/01 14:47:07 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ t_cmd	**init_all_cmd(char **argv, int argc, char **envp)
 	while (i < nb_cmd)
 	{
 		cmds[i] = init_cmd(argv[i + 2], envp);
+		if (!cmds[i])
+		{
+			free_all_cmd(cmds);
+			exit(EXIT_FAILURE);
+		}
 		i++;
 	}
 	cmds[i] = NULL;

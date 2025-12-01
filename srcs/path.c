@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 10:25:42 by dufama            #+#    #+#             */
-/*   Updated: 2025/12/01 11:24:58 by dufama           ###   ########.fr       */
+/*   Updated: 2025/12/01 15:33:35 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ static	char **build_path(char **envp)
 	int		i;
 
 	env = find_env(envp);
+	if (!env)
+		return (NULL);
 	path_env = ft_split(env, ':'); //nouvelle chaine alloué
 	if (!path_env)
 		return (NULL);
@@ -96,7 +98,6 @@ char	*get_path(char *cmd, char **envp)
 		}
 		i++;
 	}
-	error_cmd_not_found(cmd, env);
 	return (NULL);
 }
 //init in the struct the real path
@@ -106,10 +107,17 @@ t_cmd	*init_cmd(char *cmd, char **envp)
 	t_cmd	*new;
 
 	new = malloc(sizeof(t_cmd));
+	if (!new)
+		return (NULL);
 	cmd_path = ft_split(cmd, ' ');
 	if (!cmd_path)
 		return (NULL);
 	new->path = get_path(cmd_path[0], envp);
+	if (!new->path)
+	{
+		error_cmd_not_found(cmd, cmd_path);
+		return (NULL);
+	}
 	new->args = cmd_path;
 	return (new);
 }

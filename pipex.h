@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:08:57 by dufama            #+#    #+#             */
-/*   Updated: 2025/12/01 12:11:31 by dufama           ###   ########.fr       */
+/*   Updated: 2025/12/01 13:58:34 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ typedef struct s_cmd
 	char	**args;
 	char	*path;
 } t_cmd	;
+
+typedef struct s_fds
+{
+
+} t_fds;
 
 //utils
 void	free_tab(char **tab);
