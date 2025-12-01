@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   open_file.c                                        :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/01 12:03:11 by dufama            #+#    #+#             */
-/*   Updated: 2025/12/01 12:06:12 by dufama           ###   ########.fr       */
+/*   Created: 2025/12/01 10:50:19 by dufama            #+#    #+#             */
+/*   Updated: 2025/12/01 11:20:07 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-int	open_inflile(char *filename)
+void	error_cmd_not_found(char *cmd, char **tab_to_free)
 {
-	int	fd;
-
-	fd = open(filename, O_WRONLY);
-	if (fd < 0)
-		perror("open");
-	return (fd);
-}
-
-int	open_outfile(char *filename)
-{
-	int	fd;
-
-	fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	if (fd < 0)
-		perror("open");
-	return (fd);
+	ft_putstr_fd("pipex : command not found ", 2);
+	ft_putstr_fd(cmd, 2);
+	free_tab(tab_to_free);
+	exit(127);
 }

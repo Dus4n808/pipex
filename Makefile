@@ -6,18 +6,26 @@
 #    By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/12 15:53:34 by dufama            #+#    #+#              #
-#    Updated: 2025/11/25 19:12:13 by dufama           ###   ########.fr        #
+#    Updated: 2025/12/01 12:11:11 by dufama           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS = pipex.c \
-		srcs/find_path.c \
+		srcs/path.c \
+		srcs/utils.c \
+		srcs/error.c \
+		srcs/process.c \
 		srcs/open_file.c \
-		srcs/procces.c \
+		srcs/utils2.c \
+
+SRCS_BONUS =
 
 OBJS = $(SRCS:.c=.o)
+OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
 NAME = pipex
+
+BONUS = pipex_bonus
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -I ./
@@ -33,7 +41,13 @@ $(NAME): $(OBJS)
 	@$(MAKE) -s -C $(LIBFT_DIR)
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
 
+$(BONUS): $(OBJS_BONUS)
+	@$(MAKE) -s -C $(LIBFT_DIR)
+	@$(CC) $(CFLAGS) $(OBJS_BONUS) $(LIBFT) -o $(BONUS)
+
 all: $(NAME)
+
+bonus: $(BONUS)
 
 clean:
 	@$(RM) $(OBJS)

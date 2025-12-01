@@ -1,33 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   open_file.c                                        :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/01 12:03:11 by dufama            #+#    #+#             */
-/*   Updated: 2025/12/01 12:06:12 by dufama           ###   ########.fr       */
+/*   Created: 2025/12/01 12:11:21 by dufama            #+#    #+#             */
+/*   Updated: 2025/12/01 12:13:20 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-int	open_inflile(char *filename)
+void	safe_dup(int oldfd, int newfd)
 {
-	int	fd;
-
-	fd = open(filename, O_WRONLY);
-	if (fd < 0)
-		perror("open");
-	return (fd);
-}
-
-int	open_outfile(char *filename)
-{
-	int	fd;
-
-	fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	if (fd < 0)
-		perror("open");
-	return (fd);
+	if(dup2(oldfd, newfd) == -1)
+	{
+		perror("dup2");
+		exit(EXIT_FAILURE);
+	}
 }

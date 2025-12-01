@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   open_file.c                                        :+:      :+:    :+:   */
+/*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/01 12:03:11 by dufama            #+#    #+#             */
-/*   Updated: 2025/12/01 12:06:12 by dufama           ###   ########.fr       */
+/*   Created: 2025/12/01 11:57:02 by dufama            #+#    #+#             */
+/*   Updated: 2025/12/01 11:59:21 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-int	open_inflile(char *filename)
+t_cmd	**init_all_cmd(char **argv, int argc, char **envp)
 {
-	int	fd;
+	int		nb_cmd;
+	t_cmd	**cmds;
+	int		i;
 
-	fd = open(filename, O_WRONLY);
-	if (fd < 0)
-		perror("open");
-	return (fd);
-}
-
-int	open_outfile(char *filename)
-{
-	int	fd;
-
-	fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	if (fd < 0)
-		perror("open");
-	return (fd);
+	nb_cmd = argc - 3;
+	cmds = malloc(sizeof(t_cmd *) * (nb_cmd + 1));
+	i = 0;
+	while (i < nb_cmd)
+	{
+		cmds[i] = init_cmd(argv[i + 2], envp);
+		i++;
+	}
+	cmds[i] = NULL;
+	return (cmds);
 }
