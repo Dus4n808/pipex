@@ -6,7 +6,7 @@
 #    By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/12 15:53:34 by dufama            #+#    #+#              #
-#    Updated: 2025/12/01 14:15:07 by dufama           ###   ########.fr        #
+#    Updated: 2025/12/01 16:59:37 by dufama           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ all: $(NAME)
 bonus: $(BONUS)
 
 clean:
-	@$(RM) $(OBJS)
+	@$(RM) $(OBJS) $(OBJS_BONUS)
 	@$(MAKE) -s -C $(LIBFT_DIR) clean
 
 fclean: clean

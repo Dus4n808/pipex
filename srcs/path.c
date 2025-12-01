@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 10:25:42 by dufama            #+#    #+#             */
-/*   Updated: 2025/12/01 15:33:35 by dufama           ###   ########.fr       */
+/*   Updated: 2025/12/01 15:38:46 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static	char **build_path(char **envp)
 	env = find_env(envp);
 	if (!env)
 		return (NULL);
-	path_env = ft_split(env, ':'); //nouvelle chaine alloué
+	path_env = ft_split(env, ':');
 	if (!path_env)
 		return (NULL);
 	i = 0;
@@ -64,6 +64,8 @@ static char	**build_path_cmd(char *cmd, char **envp)
 	int		i;
 
 	env = build_path(envp);
+	if (!env)
+		return (NULL);
 	i = 0;
 	while (env[i])
 	{
@@ -98,6 +100,7 @@ char	*get_path(char *cmd, char **envp)
 		}
 		i++;
 	}
+	free_tab(env);
 	return (NULL);
 }
 //init in the struct the real path
@@ -111,11 +114,15 @@ t_cmd	*init_cmd(char *cmd, char **envp)
 		return (NULL);
 	cmd_path = ft_split(cmd, ' ');
 	if (!cmd_path)
+	{
+		free(new);
 		return (NULL);
+	}
 	new->path = get_path(cmd_path[0], envp);
 	if (!new->path)
 	{
 		error_cmd_not_found(cmd, cmd_path);
+		free(new);
 		return (NULL);
 	}
 	new->args = cmd_path;
