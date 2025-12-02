@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 10:25:42 by dufama            #+#    #+#             */
-/*   Updated: 2025/12/02 11:52:12 by dufama           ###   ########.fr       */
+/*   Updated: 2025/12/02 11:57:37 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ char	*get_path(char *cmd, char **envp)
 	int		i;
 
 	env = build_path_cmd(cmd, envp);
+	if (!env)
+		return (NULL);
 	i = 0;
 	while (env[i])
 	{

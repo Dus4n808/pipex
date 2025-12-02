@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 11:57:02 by dufama            #+#    #+#             */
-/*   Updated: 2025/12/02 11:52:21 by dufama           ###   ########.fr       */
+/*   Updated: 2025/12/02 12:20:55 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ t_cmd	**init_all_cmd(char **argv, int argc, char **envp)
 
 	nb_cmd = argc - 3;
 	cmds = malloc(sizeof(t_cmd *) * (nb_cmd + 1));
+	if (!cmds)
+		return (NULL);
 	i = 0;
 	while (i < nb_cmd)
 	{
@@ -38,6 +40,8 @@ void	child_process(t_cmd *cmd, int input, int output, char **envp)
 			error_cmd_not_found(cmd->args[0], NULL);
 		exit(127);
 	}
+	if (input < 0 || output < 0)
+		exit(1);
 	safe_dup(input, STDIN_FILENO);
 	safe_dup(output, STDOUT_FILENO);
 	close(output);

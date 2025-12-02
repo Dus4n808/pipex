@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:08:57 by dufama            #+#    #+#             */
-/*   Updated: 2025/12/01 16:58:35 by dufama           ###   ########.fr       */
+/*   Updated: 2025/12/02 12:40:49 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,13 @@ typedef struct s_fds
 
 } t_fds;
 
+typedef struct	s_pipex
+{
+	t_cmd **cmds;
+	t_fds fds;
+}	t_pipex;
+
+
 //utils
 void	free_tab(char **tab);
 void	error_cmd_not_found(char *cmd, char **tab_to_free);
@@ -45,6 +52,7 @@ void	free_all_cmd(t_cmd **cmds);
 pid_t	safe_fork(void);
 void	safe_pipe(int *pipe_fd);
 void	safe_dup(int oldfd, int newfd);
+void	clean_exit(t_pipex *pipex, int code);
 //path
 char	*get_path(char *cmd, char **envp);
 t_cmd	*init_cmd(char *cmd, char **envp);
