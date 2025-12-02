@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 12:03:11 by dufama            #+#    #+#             */
-/*   Updated: 2025/12/01 12:06:12 by dufama           ###   ########.fr       */
+/*   Updated: 2025/12/02 11:44:40 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	open_inflile(char *filename)
 {
 	int	fd;
 
-	fd = open(filename, O_WRONLY);
+	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		perror("open");
 	return (fd);

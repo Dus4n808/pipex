@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 10:25:42 by dufama            #+#    #+#             */
-/*   Updated: 2025/12/01 15:38:46 by dufama           ###   ########.fr       */
+/*   Updated: 2025/12/02 11:52:12 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,12 +119,6 @@ t_cmd	*init_cmd(char *cmd, char **envp)
 		return (NULL);
 	}
 	new->path = get_path(cmd_path[0], envp);
-	if (!new->path)
-	{
-		error_cmd_not_found(cmd, cmd_path);
-		free(new);
-		return (NULL);
-	}
 	new->args = cmd_path;
 	return (new);
 }
