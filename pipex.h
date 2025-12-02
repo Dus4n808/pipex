@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:08:57 by dufama            #+#    #+#             */
-/*   Updated: 2025/12/02 13:06:39 by dufama           ###   ########.fr       */
+/*   Updated: 2025/12/02 16:06:24 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct	s_pipex
 {
 	t_cmd **cmds;
 	t_fds fds;
-}	t_pipex;
+}	t_pipex ;
 
 
 //utils

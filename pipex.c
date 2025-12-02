@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 10:25:05 by dufama            #+#    #+#             */
-/*   Updated: 2025/12/02 15:56:52 by dufama           ###   ########.fr       */
+/*   Updated: 2025/12/02 16:13:22 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@ void	check_input(int argc)
 		ft_putstr_fd("Pipex: Usage infile cmd1 cmd2 outfile\n", 2);
 		exit(EXIT_FAILURE);
 	}
+}
+
+static void	init_pipex(t_pipex *pipex, int argc, char **argv, char **envp)
+{
+	pipex->cmds = init_all_cmd(argv, argc, envp);
+	pipex->fds.fd_in = open_inflile(argv[1]);
+	pipex->fds.fd_out = open_outfile(argv[4]);
 }
 
 static void	first_child(t_pipex *pipex, int index, char **envp)
@@ -41,9 +48,7 @@ int	main(int argc, char **argv, char **envp)
 	pid_t	pid2;
 
 	check_input(argc);
-	pipex.cmds = init_all_cmd(argv, argc, envp);
-	pipex.fds.fd_in = open_inflile(argv[1]);
-	pipex.fds.fd_out = open_outfile(argv[4]);
+	init_pipex(&pipex, argc, argv, envp);
 	safe_pipe(pipex.fds.pipe_fd);
 	pid1 = safe_fork();
 	if (pid1 == 0)
