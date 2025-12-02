@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 10:25:05 by dufama            #+#    #+#             */
-/*   Updated: 2025/12/02 13:06:13 by dufama           ###   ########.fr       */
+/*   Updated: 2025/12/02 13:09:02 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,6 @@ void	check_input(int argc)
 		exit(EXIT_FAILURE);
 	}
 }
-
-// static void	first_child(t_pipex *pipex, char **envp)
-// {
-// 	close(pipex->fds.pipe_fd[0]);
-// 	child_process(&);
-// }
-
-// static void	second_child(t_cmd *cmd, t_fds *fds, char **envp)
-// {
-// 	close(fds->pipe_fd[1]);
-// 	child_process(cmd, fds->pipe_fd[0], fds->fd_out, envp);
-// }
 
 int	main(int argc, char **argv, char **envp)
 {
