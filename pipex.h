@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:08:57 by dufama            #+#    #+#             */
-/*   Updated: 2025/12/02 12:40:49 by dufama           ###   ########.fr       */
+/*   Updated: 2025/12/02 13:06:39 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ typedef struct s_fds
 	int	pipe_fd[2];
 	int	fd_in;
 	int	fd_out;
-
+	int input;
+	int output;
 } t_fds;
 
 typedef struct	s_pipex
@@ -62,7 +63,7 @@ t_cmd	**init_all_cmd(char **argv, int argc, char **envp);
 int		open_outfile(char *filename);
 int		open_inflile(char *filename);
 //do
-void	child_process(t_cmd *cmd,int input, int output, char **envp);
+void	child_process(t_pipex *pipex, int i, char **envp);
 //check
 
 

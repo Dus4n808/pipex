@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 11:57:02 by dufama            #+#    #+#             */
-/*   Updated: 2025/12/02 12:20:55 by dufama           ###   ########.fr       */
+/*   Updated: 2025/12/02 13:04:11 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,34 @@ t_cmd	**init_all_cmd(char **argv, int argc, char **envp)
 	return (cmds);
 }
 
-void	child_process(t_cmd *cmd, int input, int output, char **envp)
+void	child_process(t_pipex *pipex, int i, char **envp)
 {
+	t_cmd	*cmd;
+
+	cmd = pipex->cmds[i];
+	if (i == 0)
+	{
+		pipex->fds.input = pipex->fds.fd_in;
+		pipex->fds.output = pipex->fds.pipe_fd[1];
+	}
+	else
+	{
+		pipex->fds.input = pipex->fds.pipe_fd[0];
+		pipex->fds.output = pipex->fds.fd_out;
+	}
 	if (!cmd || !cmd->path)
 	{
 		if (cmd && cmd->args && cmd->args[0])
 			error_cmd_not_found(cmd->args[0], NULL);
-		exit(127);
+		clean_exit(pipex, 127);
 	}
-	if (input < 0 || output < 0)
-		exit(1);
-	safe_dup(input, STDIN_FILENO);
-	safe_dup(output, STDOUT_FILENO);
-	close(output);
-	close(input);
+	if (pipex->fds.input < 0 || pipex->fds.output < 0)
+		clean_exit(pipex, 1);
+	safe_dup(pipex->fds.input, STDIN_FILENO);
+	safe_dup(pipex->fds.output, STDOUT_FILENO);
+	close(pipex->fds.input);
+	close(pipex->fds.output);
 	execve(cmd->path, cmd->args, envp);
 	perror("execve");
-	exit(EXIT_FAILURE);
+	clean_exit(pipex, EXIT_FAILURE);
 }
