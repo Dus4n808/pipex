@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 10:25:05 by dufama            #+#    #+#             */
-/*   Updated: 2025/12/02 13:09:02 by dufama           ###   ########.fr       */
+/*   Updated: 2025/12/02 15:56:52 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,18 @@ void	check_input(int argc)
 	}
 }
 
+static void	first_child(t_pipex *pipex, int index, char **envp)
+{
+	close(pipex->fds.pipe_fd[0]);
+	child_process(pipex, index, envp);
+}
+
+static void	second_child(t_pipex *pipex, int index, char **envp)
+{
+	close(pipex->fds.pipe_fd[1]);
+	child_process(pipex, index, envp);
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_pipex	pipex;
@@ -35,16 +47,10 @@ int	main(int argc, char **argv, char **envp)
 	safe_pipe(pipex.fds.pipe_fd);
 	pid1 = safe_fork();
 	if (pid1 == 0)
-	{
-		close(pipex.fds.pipe_fd[0]);
-		child_process(&pipex, 0, envp);
-	}
+		first_child(&pipex, 0, envp);
 	pid2 = safe_fork();
 	if (pid2 == 0)
-	{
-		close(pipex.fds.pipe_fd[1]);
-		child_process(&pipex, 1, envp);
-	}
+		second_child(&pipex, 1, envp);
 	close(pipex.fds.pipe_fd[0]);
 	close(pipex.fds.pipe_fd[1]);
 	close(pipex.fds.fd_in);

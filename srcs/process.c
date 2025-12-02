@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 11:57:02 by dufama            #+#    #+#             */
-/*   Updated: 2025/12/02 13:04:11 by dufama           ###   ########.fr       */
+/*   Updated: 2025/12/02 15:53:19 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,9 @@ t_cmd	**init_all_cmd(char **argv, int argc, char **envp)
 	return (cmds);
 }
 
-void	child_process(t_pipex *pipex, int i, char **envp)
+static void	set_input_output(t_pipex *pipex, int index)
 {
-	t_cmd	*cmd;
-
-	cmd = pipex->cmds[i];
-	if (i == 0)
+	if (index == 0)
 	{
 		pipex->fds.input = pipex->fds.fd_in;
 		pipex->fds.output = pipex->fds.pipe_fd[1];
@@ -47,6 +44,14 @@ void	child_process(t_pipex *pipex, int i, char **envp)
 		pipex->fds.input = pipex->fds.pipe_fd[0];
 		pipex->fds.output = pipex->fds.fd_out;
 	}
+}
+
+void	child_process(t_pipex *pipex, int i, char **envp)
+{
+	t_cmd	*cmd;
+
+	cmd = pipex->cmds[i];
+	set_input_output(pipex, i);
 	if (!cmd || !cmd->path)
 	{
 		if (cmd && cmd->args && cmd->args[0])
