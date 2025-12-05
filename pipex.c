@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 10:25:05 by dufama            #+#    #+#             */
-/*   Updated: 2025/12/02 16:13:22 by dufama           ###   ########.fr       */
+/*   Updated: 2025/12/05 16:25:56 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	main(int argc, char **argv, char **envp)
 	check_input(argc);
 	init_pipex(&pipex, argc, argv, envp);
 	safe_pipe(pipex.fds.pipe_fd);
+	printf("%s\n", pipex.cmds[0]->args[1]);
 	pid1 = safe_fork();
 	if (pid1 == 0)
 		first_child(&pipex, 0, envp);

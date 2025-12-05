@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:08:57 by dufama            #+#    #+#             */
-/*   Updated: 2025/12/02 16:06:24 by dufama           ###   ########.fr       */
+/*   Updated: 2025/12/05 12:54:56 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	safe_dup(int oldfd, int newfd);
 void	clean_exit(t_pipex *pipex, int code);
 //path
 char	*get_path(char *cmd, char **envp);
+int		is_absolute(char *cmd);
 t_cmd	*init_cmd(char *cmd, char **envp);
 //init
 t_cmd	**init_all_cmd(char **argv, int argc, char **envp);

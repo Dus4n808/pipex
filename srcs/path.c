@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 10:25:42 by dufama            #+#    #+#             */
-/*   Updated: 2025/12/02 11:57:37 by dufama           ###   ########.fr       */
+/*   Updated: 2025/12/05 16:07:43 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,22 +105,13 @@ char	*get_path(char *cmd, char **envp)
 	free_tab(env);
 	return (NULL);
 }
-//init in the struct the real path
-t_cmd	*init_cmd(char *cmd, char **envp)
-{
-	char	**cmd_path;
-	t_cmd	*new;
 
-	new = malloc(sizeof(t_cmd));
-	if (!new)
-		return (NULL);
-	cmd_path = ft_split(cmd, ' ');
-	if (!cmd_path)
+int	is_absolute(char *cmd)
+{
+	if (ft_strchr(cmd, '/'))
 	{
-		free(new);
-		return (NULL);
+		if (access(cmd, X_OK) == 0)
+			return (1);
 	}
-	new->path = get_path(cmd_path[0], envp);
-	new->args = cmd_path;
-	return (new);
+	return (0);
 }
