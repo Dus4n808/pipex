@@ -6,13 +6,14 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:08:57 by dufama            #+#    #+#             */
-/*   Updated: 2025/12/05 12:54:56 by dufama           ###   ########.fr       */
+/*   Updated: 2025/12/07 17:51:54 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
-
+# define NO_BONUS 3
+# define BONUS 4
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -21,7 +22,8 @@
 # include <errno.h>
 # include <string.h>
 # include <fcntl.h>
-#include <sys/types.h>
+# include <sys/types.h>
+
 
 typedef struct s_cmd
 {
@@ -36,6 +38,7 @@ typedef struct s_fds
 	int	fd_out;
 	int input;
 	int output;
+	int	prev_fd;
 } t_fds;
 
 typedef struct	s_pipex
@@ -43,6 +46,14 @@ typedef struct	s_pipex
 	t_cmd **cmds;
 	t_fds fds;
 }	t_pipex ;
+
+typedef struct s_bonus
+{
+	t_cmd	**cmds;
+	t_fds	fds;
+	int		nb_cmd;
+	int		here_doc;
+}	t_bonus;
 
 
 //utils
@@ -59,13 +70,21 @@ char	*get_path(char *cmd, char **envp);
 int		is_absolute(char *cmd);
 t_cmd	*init_cmd(char *cmd, char **envp);
 //init
-t_cmd	**init_all_cmd(char **argv, int argc, char **envp);
+t_cmd	**init_all_cmd(char **argv, int argc, char **envp, int mode);
 //open
 int		open_outfile(char *filename);
 int		open_inflile(char *filename);
 //do
 void	child_process(t_pipex *pipex, int i, char **envp);
-//check
+//BONUS
+void	clean_exit_b(t_bonus *pipex, int code);
+void	child_process_bonus(t_bonus *pipex, int index, char **envp);
+void	set_in_out_bonus(t_bonus *pipex, int index);
+void	close_unused_fds(t_bonus *pipex);
+void	read_from_here_doc(char *limiter, t_bonus *pipex);
+int		open_out_bonus(char *filename);
+t_cmd	**init_all_cmd_here_doc(char **argv, int argc, char **envp, int mode);
+
 
 
 #endif

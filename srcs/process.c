@@ -6,13 +6,13 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 11:57:02 by dufama            #+#    #+#             */
-/*   Updated: 2025/12/05 16:28:18 by dufama           ###   ########.fr       */
+/*   Updated: 2025/12/07 15:41:14 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-char	**trim_args(char **args)
+static char	**trim_args(char **args)
 {
 	int		i;
 	char	*tmp;
@@ -52,13 +52,13 @@ t_cmd	*init_cmd(char *cmd, char **envp)
 	return (new);
 }
 
-t_cmd	**init_all_cmd(char **argv, int argc, char **envp)
+t_cmd	**init_all_cmd(char **argv, int argc, char **envp, int mode)
 {
 	int		nb_cmd;
 	t_cmd	**cmds;
 	int		i;
 
-	nb_cmd = argc - 3;
+	nb_cmd = argc - mode;
 	cmds = malloc(sizeof(t_cmd *) * (nb_cmd + 1));
 	if (!cmds)
 		return (NULL);

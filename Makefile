@@ -6,7 +6,7 @@
 #    By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/12 15:53:34 by dufama            #+#    #+#              #
-#    Updated: 2025/12/01 16:59:37 by dufama           ###   ########.fr        #
+#    Updated: 2025/12/07 17:46:08 by dufama           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,16 @@ SRCS = pipex.c \
 		srcs/open_file.c \
 		srcs/utils2.c \
 
-SRCS_BONUS =
+SRCS_BONUS = pipex_bonus.c \
+				srcs/path.c \
+				srcs/utils.c \
+				srcs/error.c \
+				srcs/process.c \
+				srcs/open_file.c \
+				srcs/utils2.c \
+				srcs/process_bonus.c \
+				srcs/utils_bonus.c \
+				srcs/read_bonus.c
 
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
@@ -54,7 +63,7 @@ clean:
 	@$(MAKE) -s -C $(LIBFT_DIR) clean
 
 fclean: clean
-	@$(RM) $(NAME)
+	@$(RM) $(NAME) $(BONUS)
 	@$(MAKE) -s -C $(LIBFT_DIR) fclean
 
 re: fclean all

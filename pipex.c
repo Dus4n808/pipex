@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 10:25:05 by dufama            #+#    #+#             */
-/*   Updated: 2025/12/05 16:25:56 by dufama           ###   ########.fr       */
+/*   Updated: 2025/12/07 17:02:25 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,10 @@ void	check_input(int argc)
 
 static void	init_pipex(t_pipex *pipex, int argc, char **argv, char **envp)
 {
-	pipex->cmds = init_all_cmd(argv, argc, envp);
+	pipex->cmds = init_all_cmd(argv, argc, envp, NO_BONUS);
 	pipex->fds.fd_in = open_inflile(argv[1]);
 	pipex->fds.fd_out = open_outfile(argv[4]);
+	pipex->fds.prev_fd = -1;
 }
 
 static void	first_child(t_pipex *pipex, int index, char **envp)
@@ -50,7 +51,6 @@ int	main(int argc, char **argv, char **envp)
 	check_input(argc);
 	init_pipex(&pipex, argc, argv, envp);
 	safe_pipe(pipex.fds.pipe_fd);
-	printf("%s\n", pipex.cmds[0]->args[1]);
 	pid1 = safe_fork();
 	if (pid1 == 0)
 		first_child(&pipex, 0, envp);
