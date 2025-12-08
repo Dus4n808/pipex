@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 11:57:02 by dufama            #+#    #+#             */
-/*   Updated: 2025/12/07 15:41:14 by dufama           ###   ########.fr       */
+/*   Updated: 2025/12/08 18:04:16 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,19 @@ t_cmd	*init_cmd(char *cmd, char **envp)
 	new = malloc(sizeof(t_cmd));
 	if (!new)
 		return (NULL);
+	if (!cmd || !cmd[0])
+		return (check_empty(new));
 	cmd_path = ft_split(cmd, ' ');
-	if (!cmd_path)
+	if (!cmd_path || !cmd_path[0])
 	{
 		free(new);
+		if (cmd_path)
+			free(cmd_path);
 		return (NULL);
 	}
 	cmd_path = trim_args(cmd_path);
 	if (is_absolute(cmd_path[0]))
-		new->path = cmd_path[0];
+		new->path = ft_strdup(cmd_path[0]);
 	else
 		new->path = get_path(cmd_path[0], envp);
 	new->args = cmd_path;

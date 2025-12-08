@@ -6,24 +6,20 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 15:09:38 by dufama            #+#    #+#             */
-/*   Updated: 2025/12/07 17:56:38 by dufama           ###   ########.fr       */
+/*   Updated: 2025/12/08 15:49:53 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static void	clean_struct(t_bonus *pipex)
+static void	check_input_b(int argc)
 {
-	pipex->nb_cmd = 0;
-	pipex->cmds = NULL;
-	pipex->fds.input = -1;
-	pipex->fds.output = -1;
-	pipex->fds.fd_in = -1;
-	pipex->fds.fd_out = -1;
-	pipex->fds.pipe_fd[0] = -1;
-	pipex->fds.pipe_fd[1] = -1;
-	pipex->fds.prev_fd = -1;
-	pipex->here_doc = 0;
+	if (argc < 5)
+	{
+		ft_putstr_fd("Pipex Bonus: Usage here_doc/infile "
+			"(LIMITER) cmd... outfile\n", 2);
+		exit(EXIT_FAILURE);
+	}
 }
 
 static void	init_struct(int argc, char **argv, t_bonus *pipex, char **envp)
@@ -66,10 +62,11 @@ static void	wait_children(t_bonus *pipex)
 
 int	main(int argc, char **argv, char **envp)
 {
-	t_bonus pipex;
+	t_bonus	pipex;
 	int		i;
 	pid_t	pid;
 
+	check_input_b(argc);
 	clean_struct(&pipex);
 	init_struct(argc, argv, &pipex, envp);
 	pipex.fds.prev_fd = pipex.fds.fd_in;

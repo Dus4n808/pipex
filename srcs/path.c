@@ -6,14 +6,14 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 10:25:42 by dufama            #+#    #+#             */
-/*   Updated: 2025/12/05 16:07:43 by dufama           ###   ########.fr       */
+/*   Updated: 2025/12/08 14:33:37 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
 // find the path /opt/bin/:/system/ etc
-static char *find_env(char **envp)
+static char	*find_env(char **envp)
 {
 	int	i;
 
@@ -26,9 +26,10 @@ static char *find_env(char **envp)
 	}
 	return (NULL);
 }
+
 //build the path /opt/bin/
 //return a tab
-static	char **build_path(char **envp)
+static	char	**build_path(char **envp)
 {
 	char	*env;
 	char	*tmp;
@@ -56,6 +57,7 @@ static	char **build_path(char **envp)
 	}
 	return (path_env);
 }
+
 //build tab with the command /opt/bin/ls
 static char	**build_path_cmd(char *cmd, char **envp)
 {
@@ -81,6 +83,7 @@ static char	**build_path_cmd(char *cmd, char **envp)
 	}
 	return (env);
 }
+
 //try the path wuith access /opt/bin/ls return the real path
 char	*get_path(char *cmd, char **envp)
 {

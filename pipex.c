@@ -6,16 +6,15 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 10:25:05 by dufama            #+#    #+#             */
-/*   Updated: 2025/12/07 17:02:25 by dufama           ###   ########.fr       */
+/*   Updated: 2025/12/08 17:51:40 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-
 void	check_input(int argc)
 {
-	if (argc !=  5)
+	if (argc != 5)
 	{
 		ft_putstr_fd("Pipex: Usage infile cmd1 cmd2 outfile\n", 2);
 		exit(EXIT_FAILURE);

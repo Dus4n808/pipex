@@ -6,7 +6,7 @@
 /*   By: dufama <dufama@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 17:14:51 by dufama            #+#    #+#             */
-/*   Updated: 2025/12/07 17:16:57 by dufama           ###   ########.fr       */
+/*   Updated: 2025/12/08 14:34:15 by dufama           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 void	close_unused_fds(t_bonus *pipex)
 {
-	if (pipex->fds.pipe_fd[0] != -1 && pipex->fds.pipe_fd[0] != pipex->fds.input)
+	if (pipex->fds.pipe_fd[0] != -1
+		&& pipex->fds.pipe_fd[0] != pipex->fds.input)
 		close(pipex->fds.pipe_fd[0]);
-	if (pipex->fds.pipe_fd[1] != -1 && pipex->fds.pipe_fd[1] != pipex->fds.output)
+	if (pipex->fds.pipe_fd[1] != -1
+		&& pipex->fds.pipe_fd[1] != pipex->fds.output)
 		close(pipex->fds.pipe_fd[1]);
 	if (pipex->fds.fd_in != -1 && pipex->fds.fd_in != pipex->fds.input)
 		close(pipex->fds.fd_in);
